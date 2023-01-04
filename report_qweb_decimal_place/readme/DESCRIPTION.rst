@@ -17,7 +17,7 @@ Individual adjustments need to be done in separate modules in a manner similar t
     </template>
 
 Background:
------------
+~~~~~~~~~~~
 Odoo default reports display price unit with the decimal accuracy of product price configuration.
 However, globally applying the decimal accuracy setting is sometimes not appropriate under multi-currency settings
 where how unit prices should be presented differs depending on the currency.
