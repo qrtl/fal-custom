@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- pylint:disable=deprecated-data-xml-node -->
+<odoo>
+    <template
+        id="report_saleorder_document_inherit"
+        inherit_id="sale.report_saleorder_document"
+    >
+        <xpath expr="//td[@name='td_priceunit']/span" position="replace">
+            <t t-set="currency" t-value="doc.currency_id" />
+            <t t-set="price_unit" t-value="line.price_unit" />
+            <t t-call="report_qweb_decimal_place.price_unit_value_format" />
+        </xpath>
+    </template>
+</odoo>
