@@ -1,14 +1,20 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<!-- pylint:disable=deprecated-data-xml-node -->
 <odoo>
     <template
         id="report_purchaseorder_document_inherit"
         inherit_id="purchase.report_purchaseorder_document"
     >
-        <xpath expr="//span[@t-field='line.price_unit']" position="replace">
-            <t t-set="currency" t-value="o.currency_id" />
-            <t t-set="price_unit" t-value="line.price_unit" />
-            <t t-call="report_qweb_decimal_place.price_unit_value_format" />
+        <xpath expr="//span[@t-field='line.price_unit']" position="attributes">
+            <attribute
+                name="t-att-style"
+            >'display: none' if o.currency_id.apply_price_decimal_place else ''</attribute>
+        </xpath>
+        <xpath expr="//span[@t-field='line.price_unit']" position="after">
+            <t t-if="o.currency_id.apply_price_decimal_place">
+                <t t-set="currency" t-value="o.currency_id" />
+                <t t-set="price_unit" t-value="line.price_unit" />
+                <t t-call="report_qweb_decimal_place.price_unit_value_format" />
+            </t>
         </xpath>
     </template>
 </odoo>
