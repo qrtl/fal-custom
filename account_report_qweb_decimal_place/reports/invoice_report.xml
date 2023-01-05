@@ -5,14 +5,10 @@
         id="report_invoice_document_inherit"
         inherit_id="account.report_invoice_document"
     >
-        <xpath expr="//tbody[@class='invoice_tbody']//tr//td[3]" position="replace">
-            <td
-                t-attf-class="text-end {{ 'd-none d-md-table-cell' if report_type == 'html' else '' }}"
-            >
-                <t t-set="currency" t-value="o.currency_id" />
-                <t t-set="price_unit" t-value="line.price_unit" />
-                <t t-call="report_qweb_decimal_place.price_unit_value_format" />
-            </td>
+        <xpath expr="//span[@t-field='line.price_unit']" position="replace">
+            <t t-set="currency" t-value="o.currency_id" />
+            <t t-set="price_unit" t-value="line.price_unit" />
+            <t t-call="report_qweb_decimal_place.price_unit_value_format" />
         </xpath>
     </template>
 </odoo>
