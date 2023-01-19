@@ -15,7 +15,6 @@
         "data/solomon_csv_report_data.xml",
         "views/account_analytic_plan_views.xml",
         "views/account_move_views.xml",
-        "views/account_tax_views.xml",
         "views/res_company_views.xml",
     ],
     "installable": True,
