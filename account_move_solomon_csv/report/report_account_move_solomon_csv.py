@@ -84,7 +84,7 @@ class AccountMoveSolomonCsv(models.AbstractModel):
                     labels[2]: line.account_id.code[:4],
                     labels[3]: project_line.account_id.name or "",
                     labels[4]: project_line.account_id.code or "",
-                    labels[5]: sub_line.account_id.name or "0000-0000-0000-00-00",
+                    labels[5]: sub_line.account_id.name or "00000-0000-0000-00-00",
                     labels[7]: record.date,
                     labels[10]: "",  # Billable - FIXME: need to fill in?
                     labels[11]: 0,
