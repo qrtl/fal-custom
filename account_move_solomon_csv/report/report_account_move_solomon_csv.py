@@ -64,36 +64,49 @@ class AccountMoveSolomonCsv(models.AbstractModel):
             return line.tax_line_id.description
         return line.name
 
+    @api.model
+    def _get_row_vals(self, labels, line, project_line, sub_line, amount):
+        return {
+            labels[1]: line.company_id.solomon_company_code,
+            labels[2]: line.account_id.code[:4],
+            labels[3]: project_line.account_id.name or "",
+            labels[4]: project_line.account_id.code or "",
+            labels[5]: sub_line.account_id.name or "00000-0000-0000-00-00",
+            labels[7]: line.date,
+            labels[11]: 0,
+            labels[12]: line.debit and amount or 0,
+            labels[13]: line.credit and amount or 0,
+            labels[14]: self._get_line_description(line),
+            labels[15]: "Did not affect CA",
+        }
+
     def generate_csv_report(self, writer, data, records):
         records = records.with_context(lang="en_US")
         self._check_records(records)
         writer.writeheader()
         labels = self._get_field_dict()
         for record in records:
-            solomon_company_code = record.company_id.solomon_company_code
             for line in record.line_ids:
                 if line.display_type in ("line_section", "line_note"):
                     continue
                 analytic_lines = line.analytic_line_ids
-                project_line = analytic_lines.filtered(
+                project_lines = analytic_lines.filtered(
                     lambda x: x.plan_type == "project"
-                )[:1]
+                )
+                # We assume that there is only one Sub per journal item if any.
                 sub_line = analytic_lines.filtered(lambda x: x.plan_type == "sub")[:1]
-                vals = {
-                    labels[1]: solomon_company_code,
-                    labels[2]: line.account_id.code[:4],
-                    labels[3]: project_line.account_id.name or "",
-                    labels[4]: project_line.account_id.code or "",
-                    labels[5]: sub_line.account_id.name or "00000-0000-0000-00-00",
-                    labels[7]: record.date,
-                    labels[10]: "",  # Billable - FIXME: need to fill in?
-                    labels[11]: 0,
-                    labels[12]: line.debit,
-                    labels[13]: line.credit,
-                    labels[14]: self._get_line_description(line),
-                    labels[15]: "Did not affect CA",
-                }
-                writer.writerow(vals)
+                if not project_lines:
+                    vals = self._get_row_vals(
+                        labels, line, project_lines, sub_line, abs(line.balance)
+                    )
+                    writer.writerow(vals)
+                    continue
+                # Split lines per project
+                for project_line in project_lines:
+                    vals = self._get_row_vals(
+                        labels, line, project_line, sub_line, project_line.amount
+                    )
+                    writer.writerow(vals)
             record.is_exported = True
 
     def csv_report_options(self):
