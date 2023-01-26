@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <odoo noupdate="1">
-    <record id="mail_template_send_quo_with_subject" model="mail.template">
+    <record id="mail_template_send_quotation" model="mail.template">
             <field name="name">Send Quotation</field>
             <field name="model_id" ref="sale.model_sale_order" />
             <field
@@ -64,7 +64,7 @@
             <field name="lang">{{ object.partner_id.lang }}</field>
             <field name="auto_delete" eval="True" />
     </record>
-    <record id="mail_template_send_confirmation_with_subject" model="mail.template">
+    <record id="mail_template_send_confirmation" model="mail.template">
             <field name="name">Send confirmation sale order</field>
             <field name="model_id" ref="sale.model_sale_order" />
             <field

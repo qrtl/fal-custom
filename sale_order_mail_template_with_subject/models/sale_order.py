@@ -8,7 +8,7 @@ class SaleOrder(models.Model):
         self.ensure_one()
         if self.env.context.get("proforma") or self.state not in ("sale", "done"):
             return self.env.ref(
-                "sale_order_mail_template_with_subject.mail_template_send_quo_with_subject",
+                "sale_order_mail_template_with_subject.mail_template_send_quotation",
                 raise_if_not_found=False,
             )
         else:
@@ -20,7 +20,7 @@ class SaleOrder(models.Model):
         :return: `mail.template` record or None if default template wasn't found
         """
         return self.env.ref(
-            "sale_order_mail_template_with_subject.mail_template_send_confirmation_with_subject",
+            "sale_order_mail_template_with_subject.mail_template_send_confirmation",
             raise_if_not_found=False,
         )
 
