@@ -66,12 +66,16 @@ class AccountMoveSolomonCsv(models.AbstractModel):
 
     @api.model
     def _get_row_vals(self, labels, line, project_line, sub_line, amount):
+        project_account = project_line.account_id
+        sub_code = ""
+        if not project_account:
+            sub_code = sub_line.account_id.name or "00000-0000-0000-00-00"
         return {
             labels[1]: line.company_id.solomon_company_code,
             labels[2]: line.account_id.code[:4],
-            labels[3]: project_line.account_id.name or "",
-            labels[4]: project_line.account_id.code or "",
-            labels[5]: sub_line.account_id.name or "00000-0000-0000-00-00",
+            labels[3]: project_account.name or "",
+            labels[4]: project_account.code or "",
+            labels[5]: sub_code,
             labels[7]: line.date,
             labels[11]: 0,
             labels[12]: line.debit and amount or 0,
