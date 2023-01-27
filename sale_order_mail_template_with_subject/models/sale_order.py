@@ -1,32 +1,22 @@
-from odoo import fields, models
+from odoo import models
 
 
 class SaleOrder(models.Model):
     _inherit = "sale.order"
 
     def _find_mail_template(self):
-        self.ensure_one()
+        template_name = super(SaleOrder, self)._find_mail_template()
         if self.env.context.get("proforma") or self.state not in ("sale", "done"):
-            return self.env.ref(
-                "sale_order_mail_template_with_subject.mail_template_send_quotation",
-                raise_if_not_found=False,
+            template_name.write(
+                {
+                    "subject": "{{object.subject or 'n/a'}} - お見積りの送付 (Ref {{object.name}})"
+                }
             )
+            return template_name
         else:
-            return self._get_confirmation_template()
-
-    def _get_confirmation_template(self):
-        """Get the mail template sent on SO confirmation (or for confirmed SO's).
-
-        :return: `mail.template` record or None if default template wasn't found
-        """
-        return self.env.ref(
-            "sale_order_mail_template_with_subject.mail_template_send_confirmation",
-            raise_if_not_found=False,
-        )
-
-    def _prepare_invoice(self):
-        invoice_vals = super()._prepare_invoice()
-        invoice_vals["subject"] = self.subject
-        return invoice_vals
-
-    subject = fields.Char(tracking=True)
+            template_name.write(
+                {
+                    "subject": "{{object.subject or 'n/a'}} - 注文確認書の送付 (Ref {{object.name}})"
+                }
+            )
+            return template_name
