@@ -6,11 +6,7 @@
     "category": "Invoices & Payments",
     "author": "Quartile Limited",
     "website": "https://www.quartile.co",
-    "depends": ["account"],
+    "depends": ["account_move_subject"],
     "license": "LGPL-3",
-    "data": {
-        "data/mail_template_data.xml",
-        "views/account_move_views.xml",
-    },
     "installable": True,
 }
