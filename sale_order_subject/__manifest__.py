@@ -6,7 +6,7 @@
     "category": "Sales/Sales",
     "author": "Quartile Limited",
     "website": "https://www.quartile.co",
-    "depends": ["sale"],
+    "depends": ["sale", "account_move_subject"],
     "license": "LGPL-3",
     "data": [
         "views/sale_order_views.xml",
