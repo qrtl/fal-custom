@@ -76,6 +76,7 @@ class AccountMoveSolomonCsv(models.AbstractModel):
             labels[3]: project_account.name or "",
             labels[4]: project_account.code or "",
             labels[5]: sub_code,
+            labels[6]: line.move_name[:10],  # Solomon takes up to 10 chars
             labels[7]: line.date,
             labels[11]: 0,
             labels[12]: line.debit and amount or 0,
