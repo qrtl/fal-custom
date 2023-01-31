@@ -1,1 +1,2 @@
+git+https://github.com/qrtl/fal-oca@16.0#subdirectory=setup/report_csv
 git+https://github.com/qrtl/fal-oca@16.0#subdirectory=setup/report_qweb_decimal_place
