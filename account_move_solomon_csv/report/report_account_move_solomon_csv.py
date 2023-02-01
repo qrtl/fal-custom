@@ -109,7 +109,7 @@ class AccountMoveSolomonCsv(models.AbstractModel):
                 # Split lines per project
                 for project_line in project_lines:
                     vals = self._get_row_vals(
-                        labels, line, project_line, sub_line, project_line.amount
+                        labels, line, project_line, sub_line, abs(project_line.amount)
                     )
                     writer.writerow(vals)
             record.is_exported = True
