@@ -1,5 +1,5 @@
 # Do NOT update manually; changes here will be overwritten by Copier
-_commit: v1.14.0
+_commit: v1.14.1
 _src_path: https://github.com/OCA/oca-addons-repo-template.git
 ci: GitHub
 dependency_installation_mode: PIP
@@ -16,8 +16,8 @@ org_name: Quartile Limited
 org_slug: qrtl
 rebel_module_groups: []
 repo_description: null
-repo_name: FSB Custom
-repo_slug: fsb-custom
+repo_name: FAL Custom
+repo_slug: fal-custom
 repo_website: https://www.quartile.co
 travis_apt_packages: []
 travis_apt_sources: []
