@@ -62,7 +62,7 @@ class AccountMoveSolomonCsv(models.AbstractModel):
             return line.product_id.name
         if line.display_type == "tax":
             return line.tax_line_id.description
-        return line.name
+        return line.name or ""
 
     @api.model
     def _get_row_vals(self, labels, line, project_line, sub_line, amount):
@@ -81,7 +81,8 @@ class AccountMoveSolomonCsv(models.AbstractModel):
             labels[11]: 0,
             labels[12]: line.debit and amount or 0,
             labels[13]: line.credit and amount or 0,
-            labels[14]: self._get_line_description(line),
+            # Cut the description at 30 chars due to Solomon limitation.
+            labels[14]: self._get_line_description(line)[:30],
             labels[15]: "Did not affect CA",
         }
 
