@@ -5,6 +5,7 @@ import csv
 
 from odoo import _, api, models
 from odoo.exceptions import UserError
+from odoo.tools import float_utils
 
 
 class AccountMoveSolomonCsv(models.AbstractModel):
@@ -91,6 +92,7 @@ class AccountMoveSolomonCsv(models.AbstractModel):
         self._check_records(records)
         writer.writeheader()
         labels = self._get_field_dict()
+        precision_digits = self.env.company.currency_id.decimal_places
         for record in records:
             for line in record.line_ids:
                 if line.display_type in ("line_section", "line_note"):
@@ -101,16 +103,29 @@ class AccountMoveSolomonCsv(models.AbstractModel):
                 )
                 # We assume that there is only one Sub per journal item if any.
                 sub_line = analytic_lines.filtered(lambda x: x.plan_type == "sub")[:1]
+                line_amount = abs(line.balance)
                 if not project_lines:
                     vals = self._get_row_vals(
-                        labels, line, project_lines, sub_line, abs(line.balance)
+                        labels, line, project_lines, sub_line, line_amount
                     )
                     writer.writerow(vals)
                     continue
+                project_line_sum = abs(sum(project_lines.mapped("amount")))
+                need_adjust = bool(
+                    float_utils.float_compare(
+                        project_line_sum, line_amount, precision_digits=precision_digits
+                    )
+                    != 0
+                )
                 # Split lines per project
                 for project_line in project_lines:
+                    project_line_amount = abs(project_line.amount)
+                    if need_adjust and project_line == project_lines[-1]:
+                        # Make adjustment to project line amount so that the total
+                        # amount will be consistent with the move line amount.
+                        project_line_amount += line_amount - project_line_sum
                     vals = self._get_row_vals(
-                        labels, line, project_line, sub_line, abs(project_line.amount)
+                        labels, line, project_line, sub_line, project_line_amount
                     )
                     writer.writerow(vals)
             record.is_exported = True
