@@ -66,16 +66,20 @@ class AccountMoveSolomonCsv(models.AbstractModel):
         return line.name or ""
 
     @api.model
-    def _get_row_vals(self, labels, line, project_line, sub_line, amount):
-        project_account = project_line.account_id
+    def _get_row_vals(self, labels, line, analytic_line, amount):
+        plan_type = analytic_line.plan_type
+        analytic_account = analytic_line.account_id
         sub_code = ""
-        if not project_account:
-            sub_code = sub_line.account_id.name or "00000-0000-0000-00-00"
+        if plan_type == "sub":
+            sub_code = analytic_account.name
+        elif plan_type != "project":
+            # Basically for B/S accounts
+            sub_code = "00000-0000-0000-00-00"
         return {
             labels[1]: line.company_id.solomon_company_code,
             labels[2]: line.account_id.code[:4],
-            labels[3]: project_account.name or "",
-            labels[4]: project_account.code or "",
+            labels[3]: plan_type == "project" and analytic_account.name or "",
+            labels[4]: plan_type == "project" and analytic_account.code or "",
             labels[5]: sub_code,
             labels[6]: line.move_name[:10],  # Solomon takes up to 10 chars
             labels[7]: line.date,
@@ -92,40 +96,42 @@ class AccountMoveSolomonCsv(models.AbstractModel):
         self._check_records(records)
         writer.writeheader()
         labels = self._get_field_dict()
-        precision_digits = self.env.company.currency_id.decimal_places
+        digits = self.env.company.currency_id.decimal_places
         for record in records:
             for line in record.line_ids:
                 if line.display_type in ("line_section", "line_note"):
                     continue
                 analytic_lines = line.analytic_line_ids
-                project_lines = analytic_lines.filtered(
-                    lambda x: x.plan_type == "project"
-                )
-                # We assume that there is only one Sub per journal item if any.
-                sub_line = analytic_lines.filtered(lambda x: x.plan_type == "sub")[:1]
-                line_amount = abs(line.balance)
-                if not project_lines:
-                    vals = self._get_row_vals(
-                        labels, line, project_lines, sub_line, line_amount
+                if len(analytic_lines.mapped("plan_id")) > 1:
+                    # There should be only one analytic plan associated to a move line
+                    # if any.
+                    raise UserError(
+                        _(
+                            "There is an item with multiple analytic plans: %s",
+                            record.name,
+                        )
                     )
+                line_amount = abs(line.balance)
+                if not analytic_lines:
+                    vals = self._get_row_vals(labels, line, analytic_lines, line_amount)
                     writer.writerow(vals)
                     continue
-                project_line_sum = abs(sum(project_lines.mapped("amount")))
+                analytic_line_sum = abs(sum(analytic_lines.mapped("amount")))
                 need_adjust = bool(
                     float_utils.float_compare(
-                        project_line_sum, line_amount, precision_digits=precision_digits
+                        analytic_line_sum, line_amount, precision_digits=digits
                     )
                     != 0
                 )
-                # Split lines per project
-                for project_line in project_lines:
-                    project_line_amount = abs(project_line.amount)
-                    if need_adjust and project_line == project_lines[-1]:
+                # Split rows per analytic line
+                for analytic_line in analytic_lines:
+                    project_line_amount = abs(analytic_line.amount)
+                    if need_adjust and analytic_line == analytic_lines[-1]:
                         # Make adjustment to project line amount so that the total
                         # amount will be consistent with the move line amount.
-                        project_line_amount += line_amount - project_line_sum
+                        project_line_amount += line_amount - analytic_line_sum
                     vals = self._get_row_vals(
-                        labels, line, project_line, sub_line, project_line_amount
+                        labels, line, analytic_line, project_line_amount
                     )
                     writer.writerow(vals)
             record.is_exported = True

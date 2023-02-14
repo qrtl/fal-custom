@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 16.0+e\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-01-19 14:42+0000\n"
-"PO-Revision-Date: 2023-01-19 14:42+0000\n"
+"POT-Creation-Date: 2023-02-14 14:19+0000\n"
+"PO-Revision-Date: 2023-02-14 14:19+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -105,6 +105,13 @@ msgstr ""
 #: model:ir.model.fields,help:account_move_solomon_csv.field_res_company__solomon_company_code
 msgid "The set value will be used in Solomon data export."
 msgstr "設定値はSolomonデータ出力に使用されます。"
+
+#. module: account_move_solomon_csv
+#. odoo-python
+#: code:addons/account_move_solomon_csv/report/report_account_move_solomon_csv.py:0
+#, python-format
+msgid "There is an item with multiple analytic plans: %s"
+msgstr "複数の分析プランが紐づいた仕訳項目があります: %s"
 
 #. module: account_move_solomon_csv
 #: model:ir.model.fields,help:account_move_solomon_csv.field_account_analytic_line__plan_type
