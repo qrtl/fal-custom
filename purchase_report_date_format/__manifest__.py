@@ -4,7 +4,7 @@
     "name": "Purchase Report Date Format",
     "category": "Reporting",
     "version": "16.0.1.0.0",
-    "author": "Quartile Limited",
+    "author": "Quartile Limited, Odoo Community Association (OCA)",
     "website": "https://www.quartile.co",
     "license": "AGPL-3",
     "depends": ["purchase"],

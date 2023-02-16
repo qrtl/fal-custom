@@ -5,10 +5,7 @@
         inherit_id="purchase.report_purchasequotation_document"
     >
         <xpath expr="//span[@t-field='order_line.date_planned']" position="attributes">
-            <attribute name="t-att-style">'display: none'</attribute>
-        </xpath>
-        <xpath expr="//span[@t-field='order_line.date_planned']" position="after">
-            <span t-field="order_line.date_planned" t-options='{"widget": "date"}' />
+            <attribute name="t-options">{"widget": "date"}</attribute>
         </xpath>
     </template>
 </odoo>
