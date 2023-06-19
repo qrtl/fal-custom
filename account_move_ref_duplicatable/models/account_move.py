@@ -2,7 +2,7 @@ from odoo import _, api, models
 
 
 class AccountMove(models.Model):
-    _inherit = ["account.move"]
+    _inherit = "account.move"
 
     @api.returns("self", lambda value: value.id)
     def copy(self, default=None):
@@ -11,4 +11,4 @@ class AccountMove(models.Model):
             default = {}
         if "ref" not in default:
             default["ref"] = _("%s (copy)", self.ref)
-        return super(AccountMove, self).copy(default=default)
+        return super().copy(default=default)
