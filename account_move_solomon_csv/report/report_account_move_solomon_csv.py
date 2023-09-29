@@ -81,7 +81,10 @@ class AccountMoveSolomonCsv(models.AbstractModel):
             labels[3]: plan_type == "project" and analytic_account.name or "",
             labels[4]: plan_type == "project" and analytic_account.code or "",
             labels[5]: sub_code,
-            labels[6]: line.move_name[:10],  # Solomon takes up to 10 chars
+            # There have been cases where line.move_name is not properly set for taxes
+            # for a period, which should be fixed by now in odoo/odoo.
+            # To avoid the issue, we use line.move_id.name instead.
+            labels[6]: line.move_id.name[:10],  # Solomon takes up to 10 chars
             labels[7]: line.date,
             labels[11]: 0,
             labels[12]: line.debit and amount or 0,
