@@ -24,8 +24,8 @@ Account Move Solomon CSV
 
 This module does the following:
 
-* Let users export journal entries in CSV format to be uploaded to Solomon accounting
-  system.
+-  Let users export journal entries in CSV format to be uploaded to
+   Solomon accounting system.
 
 This module depends on report_csv module from OCA.
 
@@ -39,15 +39,15 @@ Configuration
 
 Following settings should be updated:
 
-* Set Solomon Company Code in company.
-* Set Plan Type in relevant analytic plans. Plan Type decides which column of the Solomon
-  data the analytic account will be mapped to.
+-  Set Solomon Company Code in company.
+-  Set Plan Type in relevant analytic plans. Plan Type decides which
+   column of the Solomon data the analytic account will be mapped to.
 
 Usage
 =====
 
-Select journal entries that should be exported, and then go to *Print > Solomon CSV* to
-export the data.
+Select journal entries that should be exported, and then go to *Print >
+Solomon CSV* to export the data.
 
 Bug Tracker
 ===========
@@ -63,12 +63,12 @@ Credits
 =======
 
 Authors
-~~~~~~~
+-------
 
 * Quartile Limited
 
 Maintainers
-~~~~~~~~~~~
+-----------
 
 This module is part of the `qrtl/fal-custom <https://github.com/qrtl/fal-custom/tree/16.0/account_move_solomon_csv>`_ project on GitHub.
 

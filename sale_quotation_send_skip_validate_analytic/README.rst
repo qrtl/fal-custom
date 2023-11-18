@@ -22,7 +22,8 @@ Sale Quotation Send Skip Validate Analytic
 
 |badge1| |badge2| |badge3|
 
-This module disables validation of analytic distribution for sale order line when the user sends quotation.
+This module disables validation of analytic distribution for sale order
+line when the user sends quotation.
 
 **Table of contents**
 
@@ -43,12 +44,12 @@ Credits
 =======
 
 Authors
-~~~~~~~
+-------
 
 * Quartile Limited
 
 Maintainers
-~~~~~~~~~~~
+-----------
 
 This module is part of the `qrtl/fal-custom <https://github.com/qrtl/fal-custom/tree/16.0/sale_quotation_send_skip_validate_analytic>`_ project on GitHub.
 

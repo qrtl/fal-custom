@@ -22,10 +22,12 @@ Sale Report Qweb Decimal Place
 
 |badge1| |badge2| |badge3|
 
-This module provides the option to adjust the price unit format (number of decimal places to apply)
-of sale reports according to the configuration of price_decimal_places in currency.
+This module provides the option to adjust the price unit format (number
+of decimal places to apply) of sale reports according to the
+configuration of price_decimal_places in currency.
 
-This module depends on report_qweb_decimal_place module in OCA/reporting-engine.
+This module depends on report_qweb_decimal_place module in
+OCA/reporting-engine.
 
 **Table of contents**
 
@@ -46,12 +48,12 @@ Credits
 =======
 
 Authors
-~~~~~~~
+-------
 
 * Quartile Limited
 
 Maintainers
-~~~~~~~~~~~
+-----------
 
 This module is part of the `qrtl/fal-custom <https://github.com/qrtl/fal-custom/tree/16.0/sale_report_qweb_decimal_place>`_ project on GitHub.
 

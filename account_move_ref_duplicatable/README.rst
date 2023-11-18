@@ -22,7 +22,8 @@ Account Move Ref Duplicatable
 
 |badge1| |badge2| |badge3|
 
-This module adds functionality to duplicate the value of the reference field when the user duplicates the account move.
+This module adds functionality to duplicate the value of the reference
+field when the user duplicates the account move.
 
 **Table of contents**
 
@@ -43,12 +44,12 @@ Credits
 =======
 
 Authors
-~~~~~~~
+-------
 
 * Quartile Limited
 
 Maintainers
-~~~~~~~~~~~
+-----------
 
 This module is part of the `qrtl/fal-custom <https://github.com/qrtl/fal-custom/tree/16.0/account_move_ref_duplicatable>`_ project on GitHub.
 
