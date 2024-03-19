@@ -1,0 +1,6 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_account_analytic_account,access.account.analytic.account,analytic.model_account_analytic_account,group_analytic_accounting_user,1,1,0,0
+access_account_analytic_applicability,access.account.analytic.applicability,analytic.model_account_analytic_applicability,group_analytic_accounting_user,1,1,0,0
+access_account_analytic_plan,access.account.analytic.plan,analytic.model_account_analytic_plan,group_analytic_accounting_user,1,1,0,0
+access_account_analytic_distribution_model,access.account.analytic.distribution.model,analytic.model_account_analytic_distribution_model,group_analytic_accounting_user,1,1,0,0
+access_account_analytic_line,access.account.analytic.line,analytic.model_account_analytic_line,group_analytic_accounting_user,1,1,0,0
