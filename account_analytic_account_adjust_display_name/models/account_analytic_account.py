@@ -8,7 +8,7 @@ class AccountAnalyticAccount(models.Model):
     _inherit = "account.analytic.account"
 
     def name_get(self):
-        if not self.env.company.analytic_account_display_only_name:
+        if not self.env.company.adjust_analytic_account_display_name:
             return super().name_get()
         res = []
         for analytic in self:

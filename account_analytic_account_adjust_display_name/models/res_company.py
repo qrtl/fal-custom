@@ -7,7 +7,7 @@ from odoo import fields, models
 class ResCompany(models.Model):
     _inherit = "res.company"
 
-    analytic_account_display_only_name = fields.Boolean(
+    adjust_analytic_account_display_name = fields.Boolean(
         default=True,
         help="If enabled, the display name of analytic account will be shown "
         "only name.",

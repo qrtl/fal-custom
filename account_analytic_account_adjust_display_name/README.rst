@@ -30,7 +30,7 @@ Background
 
 The current display name includes the reference and partner name, making
 it very long and preventing the display of percentages when analytic
-distributions are shown in list view.
+distributions are shown in UI.
 
 **Table of contents**
 
