@@ -9,6 +9,6 @@ class ResCompany(models.Model):
 
     adjust_analytic_account_display_name = fields.Boolean(
         default=True,
-        help="If enabled, the display name of analytic account will be shown "
-        "only name.",
+        help="If enabled, the display name of analytic account will only show the "
+        "name.",
     )

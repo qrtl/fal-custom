@@ -33,5 +33,5 @@ msgstr "会社"
 #. module: account_analytic_account_adjust_display_name
 #: model:ir.model.fields,help:account_analytic_account_adjust_display_name.field_res_company__adjust_analytic_account_display_name
 msgid ""
-"If enabled, the display name of analytic account will be shown only name."
+"If enabled, the display name of analytic account will only show the name."
 msgstr "選択すると分析勘定の表示名が名称のみになります。"
