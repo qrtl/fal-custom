@@ -1,0 +1,37 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* account_analytic_account_adjust_display_name
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 16.0+e\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-04-20 04:55+0000\n"
+"PO-Revision-Date: 2024-04-20 04:55+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: account_analytic_account_adjust_display_name
+#: model:ir.model.fields,field_description:account_analytic_account_adjust_display_name.field_res_company__adjust_analytic_account_display_name
+msgid "Adjust Analytic Account Display Name"
+msgstr "分析勘定表示名を調整"
+
+#. module: account_analytic_account_adjust_display_name
+#: model:ir.model,name:account_analytic_account_adjust_display_name.model_account_analytic_account
+msgid "Analytic Account"
+msgstr "分析勘定"
+
+#. module: account_analytic_account_adjust_display_name
+#: model:ir.model,name:account_analytic_account_adjust_display_name.model_res_company
+msgid "Companies"
+msgstr "会社"
+
+#. module: account_analytic_account_adjust_display_name
+#: model:ir.model.fields,help:account_analytic_account_adjust_display_name.field_res_company__adjust_analytic_account_display_name
+msgid ""
+"If enabled, the display name of analytic account will only show the name."
+msgstr "選択すると分析勘定の表示名が名称のみになります。"
