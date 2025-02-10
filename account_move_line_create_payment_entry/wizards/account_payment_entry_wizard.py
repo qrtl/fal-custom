@@ -8,11 +8,13 @@ class AccountPaymentEntryWizard(models.TransientModel):
     _name = "account.payment.entry.wizard"
     _description = "Payment Entry Wizard"
 
-    credit_account_id = fields.Many2one(
+    account_id = fields.Many2one(
         "account.account",
         string="Credit Account",
         required=True,
         domain="[('deprecated', '=', False)]",
+        help="Select the account to be used as the credit or debit account for "
+        "the total balance of the selected journal items.",
     )
     date = fields.Date(
         string="Accounting Date",
@@ -39,9 +41,7 @@ class AccountPaymentEntryWizard(models.TransientModel):
         ]
         balance = sum(self.move_line_ids.mapped("balance"))
         line_vals.append(
-            Command.create(
-                {"account_id": self.credit_account_id.id, "balance": balance}
-            )
+            Command.create({"account_id": self.account_id.id, "balance": balance})
         )
         entry = self.env["account.move"].create(
             {
@@ -52,7 +52,7 @@ class AccountPaymentEntryWizard(models.TransientModel):
         )
         entry.action_post()
         move_line_ids = self.move_line_ids | entry.line_ids.filtered(
-            lambda x: x.account_id.id != self.credit_account_id.id
+            lambda x: x.account_id.id != self.account_id.id
         )
         move_line_ids.reconcile()
         return {

@@ -5,7 +5,7 @@
         <field name="arch" type="xml">
             <form string="Create Payment Entry">
                 <group>
-                    <field name="credit_account_id" />
+                    <field name="account_id" />
                     <field name="date" />
                 </group>
                 <footer>
