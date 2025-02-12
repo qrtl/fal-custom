@@ -23,11 +23,11 @@ Account Move Line Create Payment Entry
 |badge1| |badge2| |badge3|
 
 This module adds a server action to create a payment entry for selected
-journal items that belong to the same partner and to reconcile the
-selected journal items with the journal items of the created entry. The
-payment entry consists of account move lines that inherit values from
-the selected journal items (such as account_id, balance, currency,
-etc.), along with a single credit move line for the total balance.
+journal items that belong to the same partner. It also creates a
+corresponding payment record, linking them together. The payment entry
+consists of account move lines that inherit values from the selected
+journal items (such as account_id, balance, currency, etc.), along with
+a single credit/debit move line for the total balance.
 
 **Table of contents**
 
@@ -74,8 +74,8 @@ Usage
 -  Select the vendor bill move lines for the same partner.
 -  Click 'Action', then select 'Create Payment Entry'—this will open a
    wizard.
--  Choose the credit account for the credit move line in the created
-   entry, and select the accounting date to be used for the entry.
+-  Choose the journal for the created entry, and select the accounting
+   date to be used for the entry and payment.
 -  Click 'CREATE PAYMENT ENTRY' to generate the payment entry.
 
 Bug Tracker
