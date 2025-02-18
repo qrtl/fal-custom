@@ -1,0 +1,22 @@
+<odoo>
+    <record id="view_account_payment_register_form_inherit" model="ir.ui.view">
+        <field name="name">account.payment.register.form.inherit</field>
+        <field name="model">account.payment.register</field>
+        <field name="inherit_id" ref="account.view_account_payment_register_form" />
+        <field name="arch" type="xml">
+            <field name="group_payment" position="before">
+                <field name="payment_entry" invisible="1" />
+            </field>
+            <field name="group_payment" position="attributes">
+                <attribute
+                    name="attrs"
+                >{'invisible': [('payment_entry', '=', True)]}</attribute>
+            </field>
+            <field name="payment_difference_handling" position="attributes">
+                <attribute
+                    name="attrs"
+                >{'invisible': [('payment_entry', '=', True)]}</attribute>
+            </field>
+        </field>
+    </record>
+</odoo>

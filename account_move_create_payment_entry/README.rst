@@ -1,6 +1,6 @@
-======================================
-Account Move Line Create Payment Entry
-======================================
+=================================
+Account Move Create Payment Entry
+=================================
 
 .. 
    !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
@@ -17,17 +17,15 @@ Account Move Line Create Payment Entry
     :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
     :alt: License: AGPL-3
 .. |badge3| image:: https://img.shields.io/badge/github-qrtl%2Ffal--custom-lightgray.png?logo=github
-    :target: https://github.com/qrtl/fal-custom/tree/16.0/account_move_line_create_payment_entry
+    :target: https://github.com/qrtl/fal-custom/tree/16.0/account_move_create_payment_entry
     :alt: qrtl/fal-custom
 
 |badge1| |badge2| |badge3|
 
-This module adds a server action to create a payment entry for selected
-journal items that belong to the same partner. It also creates a
-corresponding payment record, linking them together. The payment entry
-consists of account move lines that inherit values from the selected
-journal items (such as account_id, balance, currency, etc.), along with
-a single credit/debit move line for the total balance.
+This module adds a server action to create a payment for selected moves
+that belong to the same partner. The related journal entry of the
+created payment uses the exchange rate of each invoice's date instead of
+the payment date.
 
 **Table of contents**
 
@@ -70,13 +68,12 @@ Example Scenario
 Usage
 =====
 
--  Navigate to Accounting > Accounting > Journal Items.
--  Select the vendor bill move lines for the same partner.
+-  Navigate to Accounting > Customers > Invoices or Accounting > Vendors
+   > Bills.
+-  Select the record for the same partner.
 -  Click 'Action', then select 'Create Payment Entry'—this will open a
    wizard.
--  Choose the journal for the created entry, and select the accounting
-   date to be used for the entry and payment.
--  Click 'CREATE PAYMENT ENTRY' to generate the payment entry.
+-  Click 'CREATE PAYMENT' to generate the payment.
 
 Bug Tracker
 ===========
@@ -84,7 +81,7 @@ Bug Tracker
 Bugs are tracked on `GitHub Issues <https://github.com/qrtl/fal-custom/issues>`_.
 In case of trouble, please check there if your issue has already been reported.
 If you spotted it first, help us to smash it by providing a detailed and welcomed
-`feedback <https://github.com/qrtl/fal-custom/issues/new?body=module:%20account_move_line_create_payment_entry%0Aversion:%2016.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
+`feedback <https://github.com/qrtl/fal-custom/issues/new?body=module:%20account_move_create_payment_entry%0Aversion:%2016.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
 
 Do not contact contributors directly about support or help with technical issues.
 
@@ -99,6 +96,6 @@ Authors
 Maintainers
 -----------
 
-This module is part of the `qrtl/fal-custom <https://github.com/qrtl/fal-custom/tree/16.0/account_move_line_create_payment_entry>`_ project on GitHub.
+This module is part of the `qrtl/fal-custom <https://github.com/qrtl/fal-custom/tree/16.0/account_move_create_payment_entry>`_ project on GitHub.
 
 You are welcome to contribute.
