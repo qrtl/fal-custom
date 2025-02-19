@@ -370,9 +370,10 @@ ul.auto-toc {
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! -->
 <p><a class="reference external image-reference" href="https://odoo-community.org/page/development-status"><img alt="Beta" src="https://img.shields.io/badge/maturity-Beta-yellow.png" /></a> <a class="reference external image-reference" href="http://www.gnu.org/licenses/agpl-3.0-standalone.html"><img alt="License: AGPL-3" src="https://img.shields.io/badge/licence-AGPL--3-blue.png" /></a> <a class="reference external image-reference" href="https://github.com/qrtl/fal-custom/tree/16.0/account_move_create_payment_entry"><img alt="qrtl/fal-custom" src="https://img.shields.io/badge/github-qrtl%2Ffal--custom-lightgray.png?logo=github" /></a></p>
 <p>This module adds a server action to create a payment for selected moves
-that belong to the same partner. The related journal entry of the
-created payment uses the exchange rate of each invoice’s date instead of
-the payment date.</p>
+that belong to the same partner. The payment entry consists of account
+move lines that inherit values from the account move lines of the
+selected moves (such as account_id, balance, currency, etc.), along with
+a single outstanding account move line for the total balance.</p>
 <p><strong>Table of contents</strong></p>
 <div class="contents local topic" id="contents">
 <ul class="simple">

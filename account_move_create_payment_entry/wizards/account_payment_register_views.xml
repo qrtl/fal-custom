@@ -12,11 +12,6 @@
                     name="attrs"
                 >{'invisible': [('payment_entry', '=', True)]}</attribute>
             </field>
-            <field name="payment_difference_handling" position="attributes">
-                <attribute
-                    name="attrs"
-                >{'invisible': [('payment_entry', '=', True)]}</attribute>
-            </field>
         </field>
     </record>
 </odoo>

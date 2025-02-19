@@ -27,7 +27,9 @@ class AccountMove(models.Model):
             "context": {
                 "active_model": "account.move",
                 "active_ids": self.ids,
+                "create_payment_entry": True,
                 "default_payment_entry": True,
+                "default_can_edit_wizard": False,
                 "default_group_payment": True,
             },
             "target": "new",
