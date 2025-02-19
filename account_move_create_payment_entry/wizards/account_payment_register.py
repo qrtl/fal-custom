@@ -21,9 +21,20 @@ class AccountPaymentRegister(models.TransientModel):
 
     def _post_payments(self, to_process, edit_mode=False):
         if self.payment_entry:
-            payments = self.env["account.payment"]
-            for vals in to_process:
-                payments |= vals["payment"]
+            return
+        return super()._post_payments(to_process, edit_mode)
+
+    def _reconcile_payments(self, to_process, edit_mode=False):
+        if self.payment_entry:
+            return True
+        return super()._reconcile_payments(to_process, edit_mode)
+
+    def _create_payments(self):
+        if not self.payment_entry:
+            return super(AccountPaymentRegister, self)._create_payments()
+        self = self.with_context(skip_account_move_synchronization=True)
+        payments = super(AccountPaymentRegister, self)._create_payments()
+        if self.payment_entry:
             line_vals = [
                 Command.create(
                     {
@@ -62,14 +73,4 @@ class AccountPaymentRegister(models.TransientModel):
             # between both the payment and the entry. As a result, the computed
             # currency is triggered and assigned the company currency.
             payments.currency_id = self.currency_id.id
-        return super()._post_payments(to_process, edit_mode)
-
-    def _reconcile_payments(self, to_process, edit_mode=False):
-        if self.payment_entry:
-            return True
-        return super()._reconcile_payments(to_process, edit_mode)
-
-    def _create_payments(self):
-        if self.payment_entry:
-            self = self.with_context(skip_account_move_synchronization=True)
-        return super(AccountPaymentRegister, self)._create_payments()
+        return payments
