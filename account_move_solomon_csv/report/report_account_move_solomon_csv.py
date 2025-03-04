@@ -104,7 +104,7 @@ class AccountMoveSolomonCsv(models.AbstractModel):
             for line in record.line_ids:
                 if line.display_type in ("line_section", "line_note"):
                     continue
-                analytic_lines = line.analytic_line_ids
+                analytic_lines = line.analytic_line_ids.filtered(lambda l: l.plan_type)
                 if len(analytic_lines.mapped("plan_id")) > 1:
                     # There should be only one analytic plan associated to a move line
                     # if any.
