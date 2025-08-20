@@ -1,3 +1,7 @@
+.. image:: https://odoo-community.org/readme-banner-image
+   :target: https://odoo-community.org/get-involved?utm_source=readme
+   :alt: Odoo Community Association
+
 ========================
 Account Move Solomon CSV
 ========================
@@ -13,7 +17,7 @@ Account Move Solomon CSV
 .. |badge1| image:: https://img.shields.io/badge/maturity-Beta-yellow.png
     :target: https://odoo-community.org/page/development-status
     :alt: Beta
-.. |badge2| image:: https://img.shields.io/badge/licence-AGPL--3-blue.png
+.. |badge2| image:: https://img.shields.io/badge/license-AGPL--3-blue.png
     :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
     :alt: License: AGPL-3
 .. |badge3| image:: https://img.shields.io/badge/github-qrtl%2Ffal--custom-lightgray.png?logo=github
@@ -24,8 +28,8 @@ Account Move Solomon CSV
 
 This module does the following:
 
--  Let users export journal entries in CSV format to be uploaded to
-   Solomon accounting system.
+- Let users export journal entries in CSV format to be uploaded to
+  Solomon accounting system.
 
 This module depends on report_csv module from OCA.
 
@@ -39,9 +43,9 @@ Configuration
 
 Following settings should be updated:
 
--  Set Solomon Company Code in company.
--  Set Plan Type in relevant analytic plans. Plan Type decides which
-   column of the Solomon data the analytic account will be mapped to.
+- Set Solomon Company Code in company.
+- Set Plan Type in relevant analytic plans. Plan Type decides which
+  column of the Solomon data the analytic account will be mapped to.
 
 Usage
 =====
